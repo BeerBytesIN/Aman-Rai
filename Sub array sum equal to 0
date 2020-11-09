@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+#include<map>
+#include<string>
+int main() {
+	    int n;
+	    cin>>n;
+	    int arr[n];
+	    int i;
+	    for(i=0;i<n;i++)
+	    cin>>arr[i];
+	    
+	map<int,int>m1;
+	int sum=0;
+	string d="No";
+	for(i=0;i<n;i++)
+	{
+	    sum+=arr[i];
+	    if(m1.find(sum)!=m1.end())
+	    {d="Yes";break;}
+	    else if(arr[i]==0)
+	    {d="Yes";break;}
+	    cout<<sum<<"\n";
+	    m1[sum]++;
+	}
+	cout<<d<<"\n";
+	   
+	return 0;
+	    
+}
