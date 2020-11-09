@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        stack<int>s1;
+        int i,j,water=0;
+        for(i=0;i<height.size();i++)
+        {
+            while(!s1.empty() and height[s1.top()]<=height[i])
+            {
+                int trap=height[s1.top()];
+                s1.pop();
+                if(s1.empty())break;
+                water+=(min(height[i],height[s1.top()])-trap)*(i-s1.top()-1);
+            }
+            s1.push(i);
+        }
+        return water;
+    }
+};
