@@ -1,0 +1,20 @@
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        int i,j=-1,n;
+        n=nums.size();
+        for(i=n-2;i>=0;i--)
+        {
+            if(nums[i]<nums[i+1])
+            {j=i;break;}
+        }
+        cout<<j;
+        if(j==-1)reverse(nums.begin(),nums.end());
+        if(j!=-1){
+            for(i=n-1;i>j;i--)
+            {
+                if(nums[i]>nums[j]){swap(nums[i],nums[j]);reverse(nums.begin()+j+1,nums.end());break;}
+            }
+        }
+    }
+};
