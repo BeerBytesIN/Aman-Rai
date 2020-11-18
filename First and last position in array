@@ -1,0 +1,73 @@
+class Solution {
+public:
+    int b=-1,e=-1;
+    int get1(vector<int>&nums,int l,int h,int k)
+    {
+        while(l<=h)
+        {
+            int mid=l+(h-l)/2;
+            if(nums[mid]==k)
+            {
+                if(mid-1>=l and nums[mid-1]==k)
+                    h=mid-1;
+                else
+                    return mid;
+            }
+            else if(nums[mid]<k)
+                l=mid+1;
+            else
+                h=mid-1;    
+        }
+        return -1;
+        
+    }
+    int get2(vector<int>&nums,int l,int h,int k)
+    {
+        while(l<=h)
+        {
+            int mid=l+(h-l)/2;
+            if(nums[mid]==k)
+            {
+                if(mid+1<=h and nums[mid+1]==k)
+                    l=mid+1;
+                else
+                    return mid;
+            }
+            else if(nums[mid]<k)
+                l=mid+1;
+            else
+                h=mid-1;    
+        }
+        return -1;
+        
+    }
+    void get(vector<int>&nums,int l,int h,int k)
+    {
+        while(l<=h)
+        {
+            int mid=l+(h-l)/2;
+            if(nums[mid]==k){
+                b=mid;e=mid;
+                int left=-1,right=-1;
+                if(mid-1>=l and nums[mid-1]==k)
+                    left=get1(nums,l,mid-1,k);
+                if(mid+1<=h and nums[mid+1]==k)
+                    right=get2(nums,mid+1,h,k);
+                if(left!=-1)b=left;
+                if(right!=-1)e=right;
+                break;
+            }
+            else if(nums[mid]<k)
+                l=mid+1;
+            else
+                h=mid-1;
+        }
+    }
+    vector<int> searchRange(vector<int>& nums, int target) {
+        get(nums,0,nums.size()-1,target);
+        vector<int>v1(2);
+        v1[0]=b;
+        v1[1]=e;
+        return v1;
+    }
+};
