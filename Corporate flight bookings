@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> corpFlightBookings(vector<vector<int>>& bookings, int n) {
+        vector<int>res(n,0);
+        int i;
+        for(i=0;i<bookings.size();i++)
+        {
+            int l=bookings[i][0];
+            int h=bookings[i][1];
+            int k=bookings[i][2];
+            res[l-1]=res[l-1]+k;
+            if(h<=res.size()-1)
+                res[h]=-k+res[h];
+        }
+        for(i=1;i<res.size();i++)
+            res[i]=res[i]+res[i-1];
+        return res;
+    }
+};
