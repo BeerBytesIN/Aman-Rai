@@ -1,0 +1,54 @@
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+       vector<ListNode*>res;
+        ListNode *t1,*t2;
+        t1=head;
+        while(t1)
+        {
+            res.push_back(t1);
+            t1=t1->next;
+        }
+        if(n==1)
+        {
+            if(res.size()==1)return NULL;
+            t1=res[res.size()-2];
+            t1->next=NULL;
+            return head;
+        }
+        if(n==res.size())
+        {
+            head=head->next;
+            return head;
+        }
+        int in=res.size()-n;
+        t1=res[in-1];
+        t1->next=t1->next->next;
+        
+        return head;
+    }
+};
+//  One pass 
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode *fast,*slow;
+        fast=head;
+        slow=head;
+        int i;
+        for(i=1;i<=n;i++)
+            fast=fast->next;
+        if(fast==NULL)
+        {
+            head=head->next;
+            return head;
+        }
+        while(fast->next)
+        {
+            fast=fast->next;
+            slow=slow->next;
+        }
+        slow->next=slow->next->next;
+        return head;
+    }
+};
