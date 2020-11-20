@@ -1,0 +1,43 @@
+class Solution {
+public:
+   struct compare {
+    bool operator()(const ListNode* l, const ListNode* r) {
+        return l->val > r->val;
+    }
+};
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        
+        priority_queue<ListNode*,vector<ListNode*>,compare>p1;
+        int i;
+        ListNode *t1;
+        for(i=0;i<lists.size();i++)
+        {
+            t1=lists[i];
+            while(t1){
+                p1.push(t1);
+                t1=t1->next;
+            }
+        }
+        ListNode *head=NULL;
+        while(!p1.empty())
+        {
+            if(!head){
+                head=p1.top();
+                t1=head;
+                t1->next=NULL;
+            }
+            else{
+                t1->next=p1.top();
+                t1=p1.top();
+                t1->next=NULL;
+            }
+            p1.pop();
+        }
+        t1=head;
+        while(t1){
+            cout<<t1->val;
+            t1=t1->next;
+        }
+        return head;
+    }
+};
