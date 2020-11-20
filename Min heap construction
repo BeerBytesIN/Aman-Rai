@@ -1,0 +1,8 @@
+class Solution {
+public:
+   struct compare {
+    bool operator()(const ListNode* l, const ListNode* r) {
+        return l->val > r->val;
+    }
+};
+ priority_queue<ListNode*,vector<ListNode*>,compare>p1;
