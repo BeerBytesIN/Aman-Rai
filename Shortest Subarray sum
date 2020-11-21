@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int shortestSubarray(vector<int>& A, int K) {
+        int i,j,len=INT_MAX;
+        if(A.size()==1)return 1;
+        deque<int>d1;
+        for(i=0;i<A.size();i++)
+        {
+            if(i>0)A[i]=A[i]+A[i-1];
+            if(A[i]>=K)len=min(len,i+1);
+        }
+         cout<<len;
+        for(i=0;i<A.size();i++)
+        {
+            while( d1.size()>0 and A[i]-A[d1.front()]>=K)
+            {
+                len=min(len,i-d1.front());
+                cout<<len;
+                d1.pop_front();
+            }
+            while(d1.size()>0 and A[d1.back()]>=A[i])
+                d1.pop_back();
+            d1.push_back(i);
+        }
+        return len==INT_MAX?-1:len;
+    }
+};
