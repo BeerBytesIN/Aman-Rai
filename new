@@ -1,0 +1,27 @@
+vector<int> getMaxSum(vector<int> A, vector<int> B, int C) {
+
+	sort(A.begin(),A.end(),greater<int>);
+	sort(B.begin(),B.end(),greater<int>);
+	priority_queue<int>p1;
+	int i,j;
+	i=0,j=0;
+	// I am considering c would be n
+	Int m1=A[0];
+	while(i<A.size() and j<B.size()
+	{
+	   m1=max(m1,A[i]);
+	  p1.push(A[i]+B[j]);
+	  i++;j++;
+	}
+	vector<int>res(p1.begin(),p1.end());
+	return  res;
+}
+here we would sort both array in decreasing order 
+we would take pointer i=0,j=0;
+we would take a max priority_queue;
+here m1 is maximum index so far in array A;
+I will be keep adding and comparing m1 in each iteration 
+
+Time complexity
+nlogn+mlogm+clogc
+this solution can be generalized for c when c would not be n

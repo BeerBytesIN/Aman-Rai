@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<vector<int>>res;
+    void get(vector<int>&nums,int i)
+    {
+        if(i==nums.size()){
+            res.push_back(nums);
+            return;
+        }
+        int k;
+        for(k=i;k<nums.size();k++)
+        {
+            swap(nums[k],nums[i]);
+            get(nums,i+1);
+            swap(nums[k],nums[i]);
+        }
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+          res.clear();
+        get(nums,0);
+        return res;
+    }
+};

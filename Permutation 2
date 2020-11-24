@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<vector<int>>res;
+    void get(vector<int>nums,int i)
+    {
+        if(i==nums.size()){
+            res.push_back(nums);
+            return;
+        }
+        int k;
+        for(k=i;k<nums.size();k++)
+        {
+            if(k!=i and nums[k]==nums[i])continue;
+            swap(nums[i],nums[k]);
+            get(nums,i+1);
+              //swap(nums[i],nums[k]);
+        }
+    }
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        res.clear();
+       sort(nums.begin(),nums.end());
+        get(nums,0);
+        return res;
+    }
+};

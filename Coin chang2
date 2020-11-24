@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int get(vector<int>&coins,int i,int sum,int target,vector<vector<int>>&dp){
+        
+        if(sum>target)return 0;
+        if(sum==target)return 1;
+        if(dp[i][sum]!=-1)return dp[i][sum];
+        int count=0;
+        int k=i;
+        for(k=i;k<coins.size();k++)
+        {
+            count+=get(coins,k,sum+coins[k],target,dp);
+        }
+        return dp[i][sum]=count;
+    }
+    int change(int amount, vector<int>& coins) {
+         if(coins.size()==0 and amount==0)return 1;
+        if(coins.size()==0)return 0;
+        vector<vector<int>>dp(coins.size(),vector<int>(amount,-1));
+       return  get(coins,0,0,amount,dp);      
+    }
+};
