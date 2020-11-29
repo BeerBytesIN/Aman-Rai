@@ -1,0 +1,61 @@
+class Solution {
+public:
+    vector<vector<string>>res;
+    bool check(vector<vector<char>>v1,int i,int j)
+    {
+        //same column
+        int r=i-1,c=j;
+        while(r>=0 and c>=0){
+            if(v1[r][c]=='Q')return false;
+            r--;
+        }
+        //left digonal
+        r=i-1;c=j-1;
+        while(r>=0 and c>=0)
+        {
+            if(v1[r][c]=='Q')return false;
+            r--;
+            c--;
+        }
+        r=i-1,c=j+1;
+        while(r>=0 and c<v1.size())
+        {
+            if(v1[r][c]=='Q')return false;
+            r--;c++;
+        }
+        return true;
+    }
+    void get(vector<vector<char>>v1,int i,int n)
+    {
+        if(i==n){
+            int r,c;
+            vector<string>result;
+            for(r=0;r<n;r++)
+            {
+                string s1="";
+                for(c=0;c<n;c++)
+                    s1=s1+v1[r][c];
+                result.push_back(s1);
+            }
+            res.push_back(result);
+           return;
+        }
+        int k;
+        for(k=0;k<n;k++)
+        {
+            if(check(v1,i,k))
+            {
+                v1[i][k]='Q';
+                get(v1,i+1,n);
+                v1[i][k]='.';
+            }
+        }
+    }
+    vector<vector<string>> solveNQueens(int n) {
+        vector<vector<char>>v1(n,vector<char>(n,'.'));
+        get(v1,0,n);
+        return res;
+    }
+};
+
+        
