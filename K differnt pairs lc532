@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int findPairs(vector<int>& nums, int k) {
+         int i,j,cnt=0;
+        map<int,int>m1;
+        for(i=0;i<nums.size();i++)
+        {
+            m1[nums[i]]++;
+        }
+        if(k==0)
+        {
+            for(auto it:m1)
+            {
+                if(it.second>=2)
+                    cnt++;
+            }
+        }
+        else{
+            for(auto it:m1)
+            {
+                if(m1.find(it.first+k)!=m1.end())
+                    cnt++;
+            }
+        }
+        return cnt;
+    }
+};
