@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int d=0;
+    int get(TreeNode *root)
+    {
+        if(!root)return 0;
+        int l=get(root->left);
+        int r=get(root->right);
+        d=max(d,l+r);
+        return 1+max(l,r);
+    }
+    int diameterOfBinaryTree(TreeNode* root) {
+        if(!root)return 0;
+        d=0;
+        get(root);
+        return d;
+    }
+};
