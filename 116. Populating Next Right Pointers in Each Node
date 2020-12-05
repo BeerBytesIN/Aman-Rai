@@ -1,0 +1,18 @@
+class Solution {
+public:
+    Node* connect(Node* root) {
+        Node *t,*l;
+        if(!root)return root;
+        t=root;
+        while(t->left){
+            l=t->left;
+            while(t){
+                t->left->next=t->right;
+                t->right->next=!t->next?NULL:t->next->left;
+                t=t->next;
+            }
+            t=l;
+        }
+        return root;
+    }
+};

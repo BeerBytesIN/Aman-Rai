@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int v;
+    void get(TreeNode *root,int &k)
+    {
+        if(!root)return;
+        get(root->left,k);
+        k--;
+        if(k==0)
+            v=root->val;
+        get(root->right,k);
+    }
+    int kthSmallest(TreeNode* root, int k) {
+       get(root,k); 
+        return v;
+    }
+};

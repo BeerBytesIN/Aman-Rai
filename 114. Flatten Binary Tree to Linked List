@@ -1,0 +1,19 @@
+class Solution {
+public:
+    TreeNode *get(TreeNode *root)
+    {
+        if(!root)return NULL;
+        TreeNode *left=get(root->left);
+        TreeNode *right=get(root->right);
+        root->left=NULL;
+        root->right=left;
+        TreeNode* t=root;
+        while(t->right)
+            t=t->right;
+        t->right=right;
+        return root;
+    }
+    void flatten(TreeNode* root) {
+        root=get(root);
+    }
+};

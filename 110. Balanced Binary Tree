@@ -1,0 +1,18 @@
+class Solution {
+public:
+    bool flag=true;
+    int get(TreeNode *root)
+    {
+        if(!root)return 0;
+        int l=get(root->left);
+        int r=get(root->right);
+        if(abs(l-r)>1)flag=false;
+        return 1+max(l,r);
+    }
+    bool isBalanced(TreeNode* root) {
+        if(!root)return true;
+        flag=true;
+        get(root);
+        return flag;
+    }
+};

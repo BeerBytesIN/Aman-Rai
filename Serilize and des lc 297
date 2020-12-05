@@ -1,0 +1,39 @@
+class Codec {
+public:
+    string serialize(TreeNode* root) {
+       if(!root)return "NULL,";
+       return to_string(root->val)+","+serialize(root->left)+serialize(root->right);
+    }
+
+    // Decodes your encoded data to tree.
+    TreeNode* deserialize(string data) {
+        queue<string>q1;
+        string s="";
+        int i;
+        cout<<data;
+        for(i=0;i<data.length();i++)
+        {
+            if(data[i]==',')
+            {
+                q1.push(s);
+                s="";
+                continue;
+            }
+            s+=data[i];
+        }
+        cout<<s;
+        if(s.length()!=0)q1.push(s);
+       return  helper(q1);
+        
+    }
+    TreeNode *helper(queue<string>&q1)
+    {
+        string temp = q1.front();
+        q1.pop();
+        if(temp=="NULL")return NULL;
+        TreeNode *root=new TreeNode(stoi(temp));
+        root->left = helper(q1);
+        root->right = helper(q1);
+        return root;
+    }
+};
