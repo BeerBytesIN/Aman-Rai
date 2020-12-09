@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int get(ListNode *head)
+    {
+        ListNode *t1;
+        int c=0;
+        t1=head;
+        while(t1){
+            c++;t1=t1->next;
+        }
+        return c;
+    }
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        int lena,lenb;
+        lena=get(headA);
+        lenb=get(headB);
+        while(lena>lenb)
+        {
+            lena--;
+            headA=headA->next;
+        }
+        while(lena<lenb)
+        {
+            lenb--;
+            headB=headB->next;
+        }
+        while(headA!=headB)
+        {
+            headA=headA->next;
+            headB=headB->next;
+        }
+        return headA;
+    }
+};
