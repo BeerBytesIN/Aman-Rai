@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+    vector<vector<int>>dp(4,vector<int>(4));
+    int i,j,k;
+    for(i=0;i<4;i++)
+    {
+        for(j=0;j<4;j++)
+        {
+           char x;
+           cin>>x;
+           if(x=='.')
+           dp[i][j]=0;
+           else
+           dp[i][j]=1;
+        }
+    }
+    
+    bool flag=false;
+    for(i=1;i<4;i++)
+    {
+        
+        for(j=1;j<4;j++)
+        {
+            int arr[4];
+            arr[0]=dp[i][j],arr[1]=dp[i][j-1],arr[2]=dp[i-1][j],arr[3]=dp[i-1][j-1];
+            int no=0,n1=0;
+            for(k=0;k<4;k++)
+            {
+                if(arr[k]==0)no++;
+                else n1++;
+            }
+            if(no==4 or n1==4)
+            {
+                flag=true;
+                break;
+            }
+        }
+    }
+    if(flag)cout<<"YES";
+    else{
+        flag=false;
+        for(i=1;i<4;i++)
+    {
+        
+        for(j=1;j<4;j++)
+        {
+            int arr[4];
+            arr[0]=dp[i][j],arr[1]=dp[i][j-1],arr[2]=dp[i-1][j],arr[3]=dp[i-1][j-1];
+            int no=0,n1=0;
+            for(k=0;k<4;k++)
+            {
+                if(arr[k]==0)no++;
+                else n1++;
+            }
+            if(abs(4-n1)==1 or abs(4-no)==1){
+                flag=true;
+                break;
+            }
+            if(flag)break;
+        }
+    }
+    if(flag)cout<<"YES";
+    else cout<<"NO";
+}
+}

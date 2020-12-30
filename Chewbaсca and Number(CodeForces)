@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main() {
+    long long int n,i,r,d,n1=0,p=1;
+    cin>>n;
+    while(n!=0){
+        r=n%10;
+        n=n/10;
+        if(n==0){
+            if(9-r==0)
+                n1=r*p+n1;
+            else if(9-r<r)
+                n1=(9-r)*p+n1;
+            else
+                n1=r*p+n1;
+        }
+        else{
+            if(9-r<r)
+            n1=(9-r)*p+n1;
+            else
+                n1=r*p+n1;
+        }
+        p*=10;
+    }
+    cout<<n1;
+}
