@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    
+ long long int  a,b,n,i,x;
+    cin>>a>>b>>n;
+    string s1;
+    bool flag=false;
+    for(i=0;i<=9;i++)
+    {
+        a*=10;
+        a+=i;
+        if(a%b==0){flag=true;break;}
+        a/=10;
+    }
+    if(!flag)cout<<-1;
+    else{
+        string s1=to_string(a);
+        n--;
+        while(n--){
+            s1=s1+"0";
+        }
+        cout<<s1;
+    }
+}
