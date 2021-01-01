@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool canFormArray(vector<int>& arr, vector<vector<int>>& pieces) {
+        int i,j;
+        set<string>m1;
+        for(i=0;i<pieces.size();i++)
+        {
+            string s1="";
+            vector<int>v1=pieces[i];
+            for(j=0;j<v1.size();j++)
+                s1+=to_string(v1[j]);
+            m1.insert(s1);
+        }
+        string s1="";
+        for(i=0;i<arr.size();i++){
+            s1+=to_string(arr[i]);
+            if(m1.find(s1)!=m1.end())
+            { s1="";            
+        }
+        if(s1.size()==0)return true;
+        return false;
+    }
+};
