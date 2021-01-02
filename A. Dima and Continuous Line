@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+        long long int n;
+        cin>>n;
+       long long int arr[n],i,j,l,h,l1,h1;
+       vector<vector<long long int>>dp;
+       for(i=0;i<n;i++)
+       cin>>arr[i];
+       for(i=0;i<n-1;i++)
+       dp.push_back({min(arr[i],arr[i+1]),max(arr[i],arr[i+1])});
+       sort(dp.begin(),dp.end());
+       bool flag=false;
+       for(i=0;i<dp.size();i++)
+       {
+           l=dp[i][0],h=dp[i][1];
+           for(j=i+1;j<dp.size();j++)
+           {
+               l1=dp[j][0],h1=dp[j][1];
+               if(l1>l and l1<h and h1>h)
+               {flag=true;break;}
+           }
+       }
+       if(flag)cout<<"yes";
+       else cout<<"no";
+        
+}
