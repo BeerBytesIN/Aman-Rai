@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int count =0;
+    void get(vector<int>&v1,int i,int n)
+    {
+        if(i==n){
+            int k;
+           // for(k=0;k<n;k++)cout<<v1[k];
+            count++;
+            return ;
+        }
+        int j;
+        for(j=i;j<n;j++)
+        {
+            swap(v1[i],v1[j]);
+            if(v1[i]%(i+1)==0 or (i+1)%v1[i]==0)
+                get(v1,i+1,n);
+          swap(v1[i],v1[j]);
+        }
+    }
+    int countArrangement(int n) {
+        count=0;
+        vector<int>v1(n);
+        int i;
+        for(i=0;i<n;i++)v1[i]=i+1;
+        get(v1,0,n);
+        return count;
+    }
+};
